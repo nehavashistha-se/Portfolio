@@ -15,4 +15,7 @@ import { ExperienceComponent } from "./experience/experience.component";
 })
 export class AppComponent {
   title = 'portfolio';
+  scrolltoView(element: string){
+    
+  }
 }
