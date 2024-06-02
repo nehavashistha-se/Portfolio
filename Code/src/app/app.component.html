@@ -1,84 +1,54 @@
 <div class="container-fluid">
     <div class="row">
-      <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0 bg-light">
-          <div class="align-items-center align-items-sm-start px-3 pt-3  text-white min-vh-100">
-            <div  class="col-12 ">
-            <a href="/" class="  align-items-center text-decoration-none">
-                  <span class="fs-5 d-none d-sm-inline">Neha Vashistha</span>
-              </a>
-              
-            </div>  
-            <hr>          
-            <div  class="col-12 ">
-              <ul class="nav nav-pills  mb-sm-auto mb-0 align-items-center align-items-sm-start" id="menu">
-                  <li class="nav-item">
-                      <a href="#Objective" class="nav-link align-middle px-0">
-                          <i class="fs-4 bi-house"></i> <span class="ms-1 d-none d-sm-inline">Objective</span>
-                      </a>
-                  </li>
-                  <li class="nav-item">
-                      <a href="#Professionalsummary" class="nav-link px-0 align-middle">
-                          <i class="fs-4 bi-table"></i> <span class="ms-1 d-none d-sm-inline">Professional Summary</span></a>
-                  </li>
-                  <li class="nav-item">
-                      <a href="#Experience" data-bs-toggle="collapse" class="nav-link px-0 align-middle ">
-                          <i class="fs-4 bi-bootstrap"></i> <span class="ms-1 d-none d-sm-inline">Experience</span></a>
-                      <ul class="collapse nav flex-column ms-1" id="Experience" data-bs-parent="#menu">
-                          <li class="w-100">
-                              <a href="#Dell" class="nav-link px-0"> <span class="d-none d-sm-inline">Dell Technologies</span></a>
-                          </li>
-                          <li>
-                              <a (click)="scrolltoView('Secure')" class="nav-link px-0"> <span class="d-none d-sm-inline">Secure Meter Pvt.Ltd.</span></a>
-                          </li>
-                          <li>
-                            <a href="#elixir" class="nav-link px-0"> <span class="d-none d-sm-inline">Elixir Technologies Pvt. Ltd.</span></a>
+        <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0 bg-light">
+            <div class="align-items-center align-items-sm-start px-3 pt-3 text-white min-vh-100">
+                <div class="col-12">
+                    <a href="/" class="align-items-center text-decoration-none">
+                        <span class="fs-5 d-none d-sm-inline">Neha Vashistha</span>
+                    </a>
+                </div>
+                <hr />
+                <div class="col-12">
+                    <ul class="nav nav-pills mb-sm-auto mb-0 align-items-center align-items-sm-start" id="menu">
+                        <li class="nav-item">
+                            <a href="#Objective" class="nav-link align-middle px-0"> <i class="fs-4 bi-house"></i> <span class="ms-1 d-none d-sm-inline">Objective</span> </a>
                         </li>
-                        <li>
-                            <a href="#kansoftware" class="nav-link px-0"> <span class="d-none d-sm-inline">Kan Software Pvt. Ltd.</span></a>
+                        <li class="nav-item">
+                            <a href="#Professionalsummary" class="nav-link px-0 align-middle"> <i class="fs-4 bi-table"></i> <span class="ms-1 d-none d-sm-inline">Professional Summary</span></a>
                         </li>
-                       
-                      </ul>
-                  </li>
-                  <li class="nav-item">
-                      <a href="#Skill" data-bs-toggle="collapse" class="nav-link px-0 align-middle">
-                          <i class="fs-4 bi-grid"></i> <span class="ms-1 d-none d-sm-inline">Technical Skill</span> </a>
-                          <ul class="collapse nav flex-column ms-1" id="Skill" data-bs-parent="#menu">
-                          <li class="w-100">
-                              <a href="#FrontEnd" class="nav-link px-0"> <span class="d-none d-sm-inline">Front- End</span></a>
-                          </li>
-                          <li>
-                              <a href="#BackEnd" class="nav-link px-0"> <span class="d-none d-sm-inline">Back- End</span></a>
-                          </li>
-                          <li>
-                              <a href="#AnalyticTool" class="nav-link px-0"> <span class="d-none d-sm-inline">Analytic tools</span></a>
-                          </li>
-                          <li>
-                              <a href="#Database" class="nav-link px-0"> <span class="d-none d-sm-inline">Database</span></a>
-                          </li>
-                          <li>
-                            <a href="#MSOffice" class="nav-link px-0"> <span class="d-none d-sm-inline">MS Office</span></a>
+                        <li class="nav-item">
+                            <a href="#Experience" data-bs-toggle="collapse" class="nav-link px-0 align-middle"> <i class="fs-4 bi-bootstrap"></i> <span class="ms-1 d-none d-sm-inline">Experience</span></a>
+                            <ul class="collapse nav flex-column ms-1" id="Experience" data-bs-parent="#menu">
+                                <li class="w-100">
+                                    <a href="#Dell" class="nav-link px-0"> <span class="d-none d-sm-inline">Dell Technologies</span></a>
+                                </li>
+                                <li>
+                                    <a (click)="scrolltoView('Secure')" class="nav-link px-0"> <span class="d-none d-sm-inline">Secure Meter Pvt.Ltd.</span></a>
+                                </li>
+                                <li>
+                                    <a href="#elixir" class="nav-link px-0"> <span class="d-none d-sm-inline">Elixir Technologies Pvt. Ltd.</span></a>
+                                </li>
+                                <li>
+                                    <a href="#kansoftware" class="nav-link px-0"> <span class="d-none d-sm-inline">Kan Software Pvt. Ltd.</span></a>
+                                </li>
+                            </ul>
                         </li>
-                        <li>
-                            <a href="#Other" class="nav-link px-0"> <span class="d-none d-sm-inline">Other</span></a>
+                        <li class="nav-item">
+                            <a href="#Skill" class="nav-link align-middle px-0"> <i class="fs-4 bi-clipboard-check-fill"></i> <span class="ms-1 d-none d-sm-inline">Skill</span> </a>
                         </li>
-                      </ul>
-                  </li>
-                  <li class="nav-item" >
-                      <a href="#SoftSkill" class="nav-link px-0 align-middle">
-                          <i class="fs-4 bi-people"></i> <span class="ms-1 d-none d-sm-inline">Soft Skill</span> </a>
-                  </li>
-              </ul>
-              </div>
-              
-         
-          </div>
-      </div>
-      <div class="col py-3">
-         <app-home id="Objective"></app-home>
-         <app-professional-summary id="Professionalsummary"></app-professional-summary>
-         <app-experience></app-experience>       
-         <app-softskill id="SoftSkill"></app-softskill>
-         <app-technicalskill id="Skill"></app-technicalskill>
-      </div>
-  </div>
+                        <li class="nav-item">
+                            <a href="#Education" class="nav-link align-middle px-0"> <i class="fs-4 bi-book"></i> <span class="ms-1 d-none d-sm-inline">Education</span> </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="col py-3">
+            <app-home id="Objective"></app-home>
+            <app-professional-summary id="Professionalsummary"></app-professional-summary>
+            <app-experience></app-experience>
+            <app-technicalskill id="Skill"></app-technicalskill>
+            <app-education id="Education"></app-education>
+        </div>
+    </div>
 </div>

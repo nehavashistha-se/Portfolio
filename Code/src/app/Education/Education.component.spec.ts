@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { SoftskillComponent } from './softskill.component';
+import { EducationComponent } from './Education.component';
 
-describe('SoftskillComponent', () => {
-  let component: SoftskillComponent;
-  let fixture: ComponentFixture<SoftskillComponent>;
+describe('EducationComponent', () => {
+  let component: EducationComponent;
+  let fixture: ComponentFixture<EducationComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [SoftskillComponent]
+      imports: [EducationComponent]
     })
     .compileComponents();
     
-    fixture = TestBed.createComponent(SoftskillComponent);
+    fixture = TestBed.createComponent(EducationComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
