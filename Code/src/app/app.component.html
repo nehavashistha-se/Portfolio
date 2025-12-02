@@ -4,7 +4,7 @@
             <div class="align-items-center align-items-sm-start px-3 pt-3 text-white min-vh-100">
                 <div class="col-12">
                     <a href="/" class="align-items-center text-decoration-none">
-                        <span class="fs-5 d-none d-sm-inline">Neha Vashistha <span class="d-none d-sm-inline">Download</span></span>
+                        <span class="fs-5 d-none d-sm-inline">Neha Vashistha <span class="d-none d-sm-inline" Id="exportPdfBtn">Download To PDF</span></span>
                     </a>
                 </div>
                 <hr />
@@ -52,3 +52,14 @@
         </div>
     </div>
 </div>
+<script>
+  
+document.addEventListener("DOMContentLoaded", () => {
+  const btn = document.getElementById("exportPdfBtn");
+  btn?.addEventListener("click", () => {
+    // Opens print dialog; user chooses "Save as PDF"
+    window.print();
+  });
+});
+
+</script>
