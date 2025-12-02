@@ -19,11 +19,12 @@ jobs:
         with:
           node-version: '18'
 
-      - name: Install dependencies
-        run: npm install
-
       - name: Build project
-        run: npm run build
+        run: |
+          ls -ltr
+          cd Code
+          npm install
+          npm run build
 
       - name: Move build to docs folder
         run: |
