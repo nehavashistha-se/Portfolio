@@ -25,17 +25,3 @@ jobs:
           cd Code
           npm install
           npm run build
-
-      - name: Move build to docs folder
-        run: |
-          rm -rf docs
-          mkdir docs
-          cp -r dist/* docs/
-
-      - name: Commit and push changes
-        run: |
-          git config --global user.name 'github-actions'
-          git config --global user.email 'github-actions@github.com'
-          git add docs
-          git commit -m "Update docs folder"
-          git push
