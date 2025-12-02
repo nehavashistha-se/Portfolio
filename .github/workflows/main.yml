@@ -25,3 +25,10 @@ jobs:
           cd Code
           npm install
           npm run build -- --configuration production --output-path=docs
+      
+      - name: Commit and push build output
+        uses: EndBug/add-and-commit@v9
+        with: 
+          message: "chore: commit Angular build output"
+          push: true
+
