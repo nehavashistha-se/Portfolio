@@ -44,3 +44,24 @@ jobs:
           add: "Code/docs"
           message: "chore: commit Angular build output"
           push: true
+    
+      - name: Copy browser build to root docs
+        run: |
+          rm -rf docs
+          mkdir docs
+          cp -r Code/docs/browser/* docs/
+
+      - name: Commit and push build output
+        uses: EndBug/add-and-commit@v9
+        with:
+          add: "docs"
+          message: "chore: commit Angular build output"
+          push: true
+
+
+
+
+
+
+
+
