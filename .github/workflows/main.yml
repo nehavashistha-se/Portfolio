@@ -1,10 +1,15 @@
 
-name: Build and Move to Docs
+name: Build and Commit Angular Output
 
 on:
   push:
     branches:
       - main
+  workflow_dispatch:
+
+# Allow the workflow to push commits using GITHUB_TOKEN
+permissions:
+  contents: write
 
 jobs:
   build:
@@ -12,23 +17,30 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
-      - name: Set up Node.js (if using JS project)
-        uses: actions/setup-node@v3
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
         with:
           node-version: '18'
+          cache: 'npm'
+          cache-dependency-path: Code/package-lock.json
 
-      - name: Build Angular project
-        run: |
-          ls -ltr
-          cd Code
-          npm install
-          npm run build -- --configuration production --output-path=docs
-      
+      - name: Install dependencies
+        working-directory: Code
+        run: npm ci
+
+      # Build output goes to Code/docs (relative to working-directory)
+      - name: Build Angular project (production)
+        working-directory: Code
+        run: npm run build -- --configuration production --output-path=docs
+
+      # Commit JUST the output folder back to the repo
       - name: Commit and push build output
         uses: EndBug/add-and-commit@v9
-        with: 
+        with:
+          add: "Code/docs"
           message: "chore: commit Angular build output"
           push: true
-
