@@ -35,6 +35,16 @@ jobs:
       - name: Install dependencies
         working-directory: Code
         run: npm ci
+    
+      # Ensure Code/docs exists before build/copy
+      - name: Ensure Code/docs exists
+        run: |
+          if [ ! -d "Code/docs" ]; then
+            echo "Code/docs not found. Creating..."
+            mkdir -p Code/docs
+          else
+            echo "Code/docs already exists."
+          fi
 
       # Read version from package.json
       - name: Read version from package.json
