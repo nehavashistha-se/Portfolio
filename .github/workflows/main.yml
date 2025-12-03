@@ -6,7 +6,7 @@ on:
     branches:
       - main
     paths:
-      - '/'    
+      - '/**'    
   workflow_dispatch:
 
 permissions:
