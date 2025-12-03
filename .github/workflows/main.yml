@@ -35,16 +35,11 @@ jobs:
       - name: Install dependencies
         working-directory: Code
         run: npm ci
-    
-      # Ensure Code/docs exists before build/copy
+
+      # Ensure Code/docs exists before build
       - name: Ensure Code/docs exists
         run: |
-          if [ ! -d "Code/docs" ]; then
-            echo "Code/docs not found. Creating..."
-            mkdir -p Code/docs
-          else
-            echo "Code/docs already exists."
-          fi
+          mkdir -p Code/docs
 
       # Read version from package.json
       - name: Read version from package.json
@@ -55,31 +50,31 @@ jobs:
           echo "version=$VERSION" >> "$GITHUB_OUTPUT"
           echo "Detected version: $VERSION"
 
-      # Build Angular project for production
+      # Build Angular project for production into Code/docs
       - name: Build Angular project
         working-directory: Code
         run: npm run build -- --configuration production --output-path=docs
 
-      # Deploy to GitHub Pages
+      # Deploy to GitHub Pages from Code/docs/browser
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: Code/docs/browser
           commit_message: "Deploy Angular app (version ${{ steps.version.outputs.version }})"
-          # Optional: keep history
           keep_files: false
 
+      # Copy browser build to root docs folder
       - name: Copy browser build to root docs
         run: |
           rm -rf docs
           mkdir docs
           cp -r Code/docs/browser/* docs/
 
+      # Commit and push root docs folder back to main
       - name: Commit and push build output
         uses: EndBug/add-and-commit@v9
         with:
           add: "docs"
-          message: "chore: commit Angular build output"
+          message: "chore: commit Angular build output (version ${{ steps.version.outputs.version }})"
           push: true
-
