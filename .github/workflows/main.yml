@@ -58,7 +58,7 @@ jobs:
       # Build Angular project for production
       - name: Build Angular project
         working-directory: Code
-        run: npm run build --configuration production --output-path=docs
+        run: npm run build -- --configuration production --output-path=docs
 
       # Deploy to GitHub Pages
       - name: Deploy to GitHub Pages
