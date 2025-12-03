@@ -1,29 +1,29 @@
 
-name: Build , Commit and Move  Angular Output
+name: Build and Deploy Angular to GitHub Pages
 
 on:
   push:
     branches:
       - main
-  pull_request:
-    branches:
-      - main
+    paths:
+      - 'Code/**'   # Only run when Code folder changes
   workflow_dispatch:
 
-# Allow the workflow to push commits using GITHUB_TOKEN
 permissions:
   contents: write
 
 jobs:
-  build:
+  build-and-deploy:
     runs-on: ubuntu-latest
 
     steps:
+      # Checkout the repository
       - name: Checkout code
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
+      # Set up Node.js
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
@@ -31,40 +31,31 @@ jobs:
           cache: 'npm'
           cache-dependency-path: Code/package-lock.json
 
+      # Install dependencies
       - name: Install dependencies
         working-directory: Code
         run: npm ci
 
-      # Build output goes to Code/docs (relative to working-directory)
-      - name: Build Angular project (production)
-        working-directory: Code
-        run: npm run build -- --configuration production --output-path=docs
-
-      # Commit JUST the output folder back to the repo
-      - name: Commit and push build output
-        uses: EndBug/add-and-commit@v9
-        with:
-          add: "Code/docs"
-          message: "chore: commit Angular build output"
-          push: true
-    
-      - name: Copy browser build to root docs
+      # Read version from package.json
+      - name: Read version from package.json
+        id: version
+        shell: bash
         run: |
-          rm -rf docs
-          mkdir docs
-          cp -r Code/docs/browser/* docs/
+          VERSION=$(node -p "require('./Code/package.json').version")
+          echo "version=$VERSION" >> "$GITHUB_OUTPUT"
+          echo "Detected version: $VERSION"
 
-      - name: Commit and push build output
-        uses: EndBug/add-and-commit@v9
+      # Build Angular project for production
+      - name: Build Angular project
+        working-directory: Code
+        run: npm run build -- --configuration production --output-path=dist
+
+      # Deploy to GitHub Pages
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v4
         with:
-          add: "docs"
-          message: "chore: commit Angular build output"
-          push: true
-
-
-
-
-
-
-
-
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: Code/dist/browser
+          commit_message: "Deploy Angular app (version ${{ steps.version.outputs.version }})"
+          # Optional: keep history
+          keep_files: false
