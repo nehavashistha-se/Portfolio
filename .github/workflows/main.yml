@@ -1,5 +1,5 @@
 
-name: Build and Commit Angular Output
+name: Build , Commit and Move  Angular Output
 
 on:
   push:
