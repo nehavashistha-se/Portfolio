@@ -6,7 +6,7 @@ on:
     branches:
       - main
     paths:
-      - 'Code/**'   # Only run when Code folder changes
+      - '/'    
   workflow_dispatch:
 
 permissions:
