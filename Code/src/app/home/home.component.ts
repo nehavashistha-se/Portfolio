@@ -1,5 +1,7 @@
-import { Component } from '@angular/core';
+import { Component ,ElementRef,ViewChild } from '@angular/core';
 import { ContactMeComponent } from "../contact-me/contact-me.component";
+import { PdfDownloadService } from '../shared/services/pdf-download.service';
+
 
 @Component({
     selector: 'app-home',
@@ -9,5 +11,11 @@ import { ContactMeComponent } from "../contact-me/contact-me.component";
     imports: [ContactMeComponent]
 })
 export class HomeComponent {
- 
+constructor(private pdfService: PdfDownloadService) {}
+
+  triggerDownload() {
+    console.log("Download button clicked");
+    this.pdfService.requestDownload();
+  }
+
 }

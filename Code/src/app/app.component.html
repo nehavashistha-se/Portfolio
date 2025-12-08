@@ -1,10 +1,10 @@
 <div class="container-fluid">
     <div class="row">
-        <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0 bg-light">
+        <!-- <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0 bg-light">
             <div class="align-items-center align-items-sm-start px-3 pt-3 text-white min-vh-100">
                 <div class="col-12">
                     <a href="/" class="align-items-center text-decoration-none">
-                        <span class="fs-5 d-none d-sm-inline">Neha Vashistha <span class="d-none d-sm-inline" Id="exportPdfBtn">Download To PDF</span></span>
+                        <span class="fs-5 d-none d-sm-inline">Neha Vashistha </span>
                     </a>
                 </div>
                 <hr />
@@ -23,7 +23,7 @@
                                     <a href="#Dell" class="nav-link px-0"> <span class="d-none d-sm-inline">Dell Technologies</span></a>
                                 </li>
                                 <li>
-                                    <a (click)="scrolltoView('Secure')" class="nav-link px-0"> <span class="d-none d-sm-inline">Secure Meter Pvt.Ltd.</span></a>
+                                    <a href="#Secure" class="nav-link px-0"> <span class="d-none d-sm-inline">Secure Meter Pvt.Ltd.</span></a>
                                 </li>
                                 <li>
                                     <a href="#elixir" class="nav-link px-0"> <span class="d-none d-sm-inline">Elixir Technologies Pvt. Ltd.</span></a>
@@ -42,8 +42,8 @@
                     </ul>
                 </div>
             </div>
-        </div>
-        <div class="col py-3">
+        </div> -->
+        <div class="col py-3" #pdfContent>
             <app-home id="Objective"></app-home>
             <app-professional-summary id="Professionalsummary"></app-professional-summary>
             <app-experience></app-experience>
@@ -52,14 +52,4 @@
         </div>
     </div>
 </div>
-<script>
-  
-document.addEventListener("DOMContentLoaded", () => {
-  const btn = document.getElementById("exportPdfBtn");
-  btn?.addEventListener("click", () => {
-    // Opens print dialog; user chooses "Save as PDF"
-    window.print();
-  });
-});
-
-</script>
+ 
