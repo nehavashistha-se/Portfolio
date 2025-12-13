@@ -1,0 +1,9 @@
+{
+  "routes": [
+    "/Experience",
+    "/home",
+    "/professionalsummary",
+    "/Softskill",
+    "/Technicalskill"
+  ]
+}
