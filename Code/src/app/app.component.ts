@@ -6,7 +6,7 @@ import { EducationComponent } from "./Education/Education.component";
 import { ProfessionalSummaryComponent } from "./professional-summary/professional-summary.component";
 import { ExperienceComponent } from "./experience/experience.component";
 import { PdfDownloadService } from './shared/services/pdf-download.service';
-import jsPDF from 'jspdf';
+import { PDFDocument } from 'pdf-lib';
 import html2canvas from 'html2canvas';
 
 
@@ -26,33 +26,47 @@ export class AppComponent implements OnInit {
     this.pdfService.downloadRequested$.subscribe(() => this.downloadPDF());
   }
 
-  async downloadPDF() {
-    const element = this.pdfContent.nativeElement;
-    const canvas = await html2canvas(element, { scale: 2 });
-    const imgData = canvas.toDataURL('image/png');
+ async downloadPDF() {
+  const element = this.pdfContent.nativeElement;
 
-    const pdf = new jsPDF('p', 'mm', 'a4');
-    const pdfWidth = pdf.internal.pageSize.getWidth();
-    const pdfHeight = pdf.internal.pageSize.getHeight();
+  // Capture HTML as canvas
+  const canvas = await html2canvas(element, { scale: 2 });
+  const imgData = canvas.toDataURL('image/png');
 
-    const imgProps = pdf.getImageProperties(imgData);
-    const imgHeight = (imgProps.height * pdfWidth) / imgProps.width;
+  // Create a new PDF document
+  const pdfDoc = await PDFDocument.create();
+  const page = pdfDoc.addPage();
 
-    let heightLeft = imgHeight;
-    let position = 0;
+  // Embed the image into the PDF
+  const pngImage = await pdfDoc.embedPng(imgData);
 
-    pdf.addImage(imgData, 'PNG', 0, position, pdfWidth, imgHeight);
-    heightLeft -= pdfHeight;
+  const { width, height } = pngImage.scale(1);
+  const pageWidth = page.getWidth();
+  const pageHeight = page.getHeight();
 
-    while (heightLeft > 0) {
-      position = heightLeft - imgHeight;
-      pdf.addPage();
-      pdf.addImage(imgData, 'PNG', 0, position, pdfWidth, imgHeight);
-      heightLeft -= pdfHeight;
-    }
+  // Scale image to fit page
+  const scale = Math.min(pageWidth / width, pageHeight / height);
+  const scaledWidth = width * scale;
+  const scaledHeight = height * scale;
 
-    pdf.save('full-content.pdf');
-  }
+  page.drawImage(pngImage, {
+    x: (pageWidth - scaledWidth) / 2,
+    y: (pageHeight - scaledHeight) / 2,
+    width: scaledWidth,
+    height: scaledHeight,
+  });
 
+  // Save PDF
+  const pdfBytes = await pdfDoc.save();
+  const blob = new Blob([pdfBytes as BlobPart], { type: 'application/pdf' });
+  const url = URL.createObjectURL(blob);
+
+  const link = document.createElement('a');
+  link.href = url;
+  link.download = 'full-content.pdf';
+  link.click();
+
+  URL.revokeObjectURL(url);
+}
  
 }
